@@ -1,0 +1,270 @@
+ <!DOCTYPE>
+<html ng-app="main">
+   <head>
+      <!-- SCRIPTS-->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.js"></script>
+      <script src="https://code.angularjs.org/1.2.22/angular-animate.min.js"></script>
+      <script src="ngFx.js"></script>
+      <script src="https://cdn.firebase.com/js/client/1.0.6/firebase.js"></script>
+      <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.11.0.js"></script>
+      <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+      <script src="darwin.js"></script>
+      <script src="anguar.ui.js"></script>
+      <script src="http://code.highcharts.com/highcharts.js"></script>
+      <script src="highcharts-ng.js"></script>
+      <script src="theme.js"></script>
+      <script src="firebase-utils.js"></script>
+      <script type="text/javascript">
+        var Keen=Keen||{configure:function(e){this._cf=e},addEvent:function(e,t,n,i){this._eq=this._eq||[],this._eq.push([e,t,n,i])},setGlobalProperties:function(e){this._gp=e},onChartsReady:function(e){this._ocrq=this._ocrq||[],this._ocrq.push(e)}};(function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src=("https:"==document.location.protocol?"https://":"http://")+"dc8na2hxrj29i.cloudfront.net/code/keen-2.1.0-min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+
+        // Configure the Keen object with your Project ID and (optional) access keys.
+        Keen.configure({
+            projectId: "53333072ce5e434b14000002",
+            writeKey: "7cbb9fbba24fcb27ac786684e6a17307d6030d0b78c001a8e00f843e7fe8cc6075f2a8e1341f63a71e34c33555a107546109ef16c598db20bc170e22baddf6f6666d101a82e0d1e9696e0cd71f7cd04724b22b0703b1f0ec7c5d117ff1f4172d0001e3a058117714619c63e6f81ca612", // required for sending events
+            readKey: "5d90bb468568899a4572d3456bd44e89ae008d4a1e16643334c1b8a65e9e21ddc3e38858f34bcaa46cac97f8bdb4f14725d7c189cc20a21142b168bd34e0f1b836142e86dc0ec6ce1429e78722d0abfd48cdfeb49b8f74133e2789ec125e809428e594a61f5cc0c0b71b56c7eb31f4a5"    // required for doing analysis
+        });
+      </script>
+
+
+    <!-- SCRIPTS-->
+    <link rel="stylesheet" type="text/css" href="http://bootswatch.com/paper/bootstrap.css">
+    <style type="text/css">
+     body{
+        background-color: #FCFCFC;
+     }
+     .navbar {
+        border-radius: 0px;
+     }
+     .view-animate {
+    }
+    
+    .view-animate.ng-enter, .view-animate.ng-leave {
+      -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+      transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+    }
+    
+    .view-animate.ng-enter {
+      opacity: 0;
+      
+    }
+    .view-animate.ng-enter.ng-enter-active {
+      opacity: 1;
+    }
+    .view-animate.ng-leave.ng-leave-active {
+      opacity: 0;
+    }
+
+    </style>
+   </head>
+  
+    <body ng-controller="ctrl">
+        <container>
+          <div ng-repeat="ar in arry" class="view-animate" ng-show="loginview">
+            <cl type="md" size="8" offset="4">
+            <cl type="md" size="6">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <center>
+                        <img class="img-circle" src="{{usuario.imagen}}" height="300px"  width="300px">
+                      </center>
+                    </div>
+                    <div class="panel-footer">
+                      <h1><small class="pull-right"><icon name="lock"></icon></small></h1>
+                      <h1>{{usuario.nombre}}</h1>
+                    </div>
+                    <br>
+
+                  </div>
+                  <div class="form-group form-group-lg">
+                    <label class="control-label" for="focusedInput">Key</label>
+                    <input class="form-control input-lg" ng-model="pass" id="focusedInput" type="password" value="" style="font-size:42px;">
+                  </div>
+                  <button ng-show="!loged" class="btn btn-primary pull-right" ng-click="enter()">Enter <icon name="log-in"></icon></button>
+                  <button ng-show="loged" class="btn btn-success pull-right">Enter <icon name="log-in"></icon></button>
+            </cl>
+          </cl>
+          </div>
+          <div ng-show="loadinview">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <center><img src="Preloader_9.gif"></center>
+          </div>
+          <div ng-show="profile">
+              <br>
+              <br>
+              <br>
+              <row>
+              <cl size="4" type="md" offset="1">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <center>
+                        <img class="img-circle" src="{{usuario.imagen}}" height="300px"  width="300px">
+                      </center>
+                    </div>
+                    <div class="panel-footer">
+                      <h5><small class="pull-right">connected</small></h5>
+                      <h1>{{usuario.nombre}}</h1>
+                    </div>
+                    <br>
+                  </div>
+              </cl>
+              <cl size="7" type="md">
+                <panel>
+                  <highchart id="chart1" config="highchartsNgConfig"></highchart>
+                </panel>
+              </cl>
+              </row>
+          </div>
+        </container>
+   </body>
+</html>
+
+<script type="text/javascript">
+app = angular.module('main', ['firebase','darwin','ui.bootstrap','highcharts-ng','ngAnimate','ngFx']);
+
+app.controller('ctrl',function($scope,$firebase){
+    adv = new Firebase("https://reportemovilapi.firebaseio.com/Adv");
+    $scope.adv = $firebase(adv);
+    buffer = new Firebase("https://reportemovilapi.firebaseio.com/buffer");
+    $scope.buffer = $firebase(buffer);
+    $scope.pass = "";
+    $scope.loged = false;
+    $scope.loginview = true;
+    $scope.loadinview = false;
+    $scope.profile = false;
+    
+    $scope.adv.$on("change",function(){
+      console.log($scope.adv);
+      ref = new Firebase("https://reportemovilapi.firebaseio.com/"+$scope.adv.$value);
+      $scope.usuario = $firebase(ref);
+    });
+
+    $scope.buffer.$on("change",function(){
+      if ($scope.pass.length>=8){
+        $scope.pass = "";
+      }else{
+        $scope.pass += $scope.buffer.$value;
+      }
+      if($scope.pass == $scope.usuario.pass){
+        $scope.loged = true;
+        $scope.loginview = false;
+        getRandomColor();
+        setTimeout(function(){
+          $scope.loadinview = false;
+          $scope.profile = true;
+          $scope.$apply();
+        }, 2000);
+      }
+
+    });
+   
+    $scope.$watch(function(){
+      if($scope.pass == $scope.usuario.pass){
+        $scope.loged = true;
+        $scope.loginview = false;
+        $scope.loadinview = true;
+        setTimeout(function(){
+          $scope.loadinview = false;
+          $scope.$apply();
+        }, 2000);
+      } 
+    });
+
+    $scope.enter = function(){
+      if($scope.pass == $scope.usuario.pass){
+        $scope.loged = true;
+        $scope.loginview = false;
+        $scope.loadinview = true;
+        setTimeout(function(){
+          $scope.loadinview = false;
+          $scope.$apply();
+        }, 2000);
+      }       
+    }
+
+
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        $("body").css({"backgroundColor":"white"});
+        return color;
+
+    }
+
+      $scope.highchartsNgConfig = {
+             //This is not a highcharts object. It just looks a little like one!
+
+             options: {
+                 //This is the Main Highcharts chart config. Any Highchart options are valid here.
+                 //will be ovverriden by values specified below.
+                 chart: {
+                     type: 'spline'
+                 },
+                 tooltip: {
+                     style: {
+                         padding: 10,
+                     },
+                     shared:true
+                 },
+             },
+
+             //The below properties are watched separately for changes.
+
+             //Series object - a list of series using normal highcharts series options.
+             series: [{
+                 data: [10, 15, 12, 8, 7,9,18],
+                 borderRadius:4 
+             },{
+                type: 'spline',
+                name: 'Average',
+                data: [3, 2.67, 3, 6.33, 3.33,4,7],
+                marker: {
+                  lineWidth: 2,
+                  lineColor: Highcharts.getOptions().colors[3],
+                  fillColor: 'white'
+                }
+            }],
+             //Title configuration
+             title: {
+                 text: ''
+             },
+             //Boolean to control showng loading status on chart
+             loading: false,
+             //Configuration for the xAxis. Currently only one x axis can be dynamically controlled.
+             //properties currentMin and currentMax provied 2-way binding to the chart's maximimum and minimum
+             xAxis: {
+               title: {text: ''}
+             },             
+
+             yAxis: {
+               title: {text: ''},
+               options:{
+               }
+             },
+             //Whether to use HighStocks instead of HighCharts. Defaults to false.
+             useHighStocks: false
+             }
+
+    console.log($scope.adv);
+
+    $scope.enterv = false;
+    $scope.arry = [1];
+
+});
+
+</script>
