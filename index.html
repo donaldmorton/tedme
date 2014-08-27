@@ -169,18 +169,6 @@ app.controller('ctrl',function($scope,$firebase){
       }
 
     });
-   
-    $scope.$watch(function(){
-      if($scope.pass == $scope.usuario.pass){
-        $scope.loged = true;
-        $scope.loginview = false;
-        $scope.loadinview = true;
-        setTimeout(function(){
-          $scope.loadinview = false;
-          $scope.$apply();
-        }, 2000);
-      } 
-    });
 
     $scope.enter = function(){
       if($scope.pass == $scope.usuario.pass){
