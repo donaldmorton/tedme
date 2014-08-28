@@ -55,18 +55,124 @@
       opacity: 0;
     }
 
+.sample-show-hide {
+}
+
+.sample-show-hide.ng-hide-add, .sample-show-hide.ng-hide-remove {
+  -webkit-transition:all  cubic-bezier(0.25,0.1,0.25,1) 0.3s;
+  -moz-transition:all  cubic-bezier(0.25,0.1,0.25,1) 0.3s;
+  -o-transition:all  cubic-bezier(0.25,0.1,0.25,1) 0.3s;
+  transition:all  cubic-bezier(0.25,0.1,0.25,1) 0.3s;
+  display:block!important;
+}
+
+.sample-show-hide.ng-hide-add.ng-hide-add-active,
+.sample-show-hide.ng-hide-remove {
+  opacity:0;
+  position: relative;
+  left: -30px;
+
+}
+
+.sample-show-hide.ng-hide-add,
+.sample-show-hide.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+  position: relative;
+  left: 0px;
+
+}
+.wel {
+}
+
+.wel.ng-hide-add, .wel.ng-hide-remove {
+  -webkit-transition:all  cubic-bezier(0.25,0.1,0.25,1) 0.6s;
+  -moz-transition:all  cubic-bezier(0.25,0.1,0.25,1) 0.6s;
+  -o-transition:all  cubic-bezier(0.25,0.1,0.25,1) 0.6s;
+  transition:all  cubic-bezier(0.25,0.1,0.25,1) 0.6s;
+  display:block!important;
+}
+
+.wel.ng-hide-add.ng-hide-add-active,
+.wel.ng-hide-remove {
+  opacity:0;
+  position: relative;
+  left: -30px;
+
+}
+
+.wel.ng-hide-add,
+.wel.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+  position: relative;
+  left: 0px;
+
+}
+
+}
+.welu {
+}
+
+.welu.ng-hide-add, .welu.ng-hide-remove {
+  -webkit-transition:all  cubic-bezier(0.25,0.1,0.25,1) 0.6s;
+  -moz-transition:all  cubic-bezier(0.25,0.1,0.25,1) 0.6s;
+  -o-transition:all  cubic-bezier(0.25,0.1,0.25,1) 0.6s;
+  transition:all  cubic-bezier(0.25,0.1,0.25,1) 0.6s;
+  display:block!important;
+}
+
+.welu.ng-hide-add.ng-hide-add-active,
+.welu.ng-hide-remove {
+  opacity:0;
+  position: relative;
+  top: 30px;
+
+}
+
+.welu.ng-hide-add,
+.welu.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+  position: relative;
+  top: 0px;
+
+}
+
     </style>
    </head>
   
     <body ng-controller="ctrl">
         <container>
-          <div ng-repeat="ar in arry" class="view-animate" ng-show="loginview">
-            <cl type="md" size="8" offset="4">
-            <cl type="md" size="6">
+          <div ng-show="welcome" class="wel">
+            <h1>
+              <br>
+              <br>
+              <br>
+              <br>
+              <center>Bienvenido.<br>
+              </center>
+            </h1>
+          </div>
+          <div ng-show="!wewolcomet && !loginview && !welcome && toggle" class="welu">
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <center>
+                <img src="beacon.svg" height="200px">
+              </center>
+          </div>
+          <div ng-repeat="ar in arry" class="sample-show-hide" ng-show="loginview && !welcomet">
+            <cl type="sm" size="8" offset="4">
+            <cl type="sm" size="6">
+                  <br>
+                  <br>
                   <div class="panel panel-default">
                     <div class="panel-body">
                       <center>
-                        <img class="img-circle" src="{{usuario.imagen}}" height="300px"  width="300px">
+                        <img class="img-circle" src="{{usuario.imagen}}" height="200px"  width="200px">
                       </center>
                     </div>
                     <div class="panel-footer">
@@ -101,29 +207,33 @@
             <br>
             <center><img src="Preloader_9.gif"></center>
           </div>
-          <div ng-show="profile">
+          <div ng-show="profile" class="sample-show-hide">
               <br>
               <br>
               <br>
               <row>
-              <cl size="4" type="md" offset="1">
-                  <div class="panel panel-default">
+              <cl size="2" type="sm" offset="1">
+                  <div class="panel panel-success">
+                    <div class="panel-heading">
+                      connected
+                    </div>
                     <div class="panel-body">
                       <center>
-                        <img class="img-circle" src="{{usuario.imagen}}" height="300px"  width="300px">
+                        <img class="img-circle" src="{{usuario.imagen}}" height="100px"  width="100px">
                       </center>
                     </div>
                     <div class="panel-footer">
                       <h5><small class="pull-right">connected</small></h5>
-                      <h1>{{usuario.nombre}}</h1>
+                      <h4>{{usuario.nombre}}</h4>
                     </div>
                     <br>
                   </div>
               </cl>
-              <cl size="7" type="md">
-                <panel>
-                  <highchart id="chart1" config="highchartsNgConfig"></highchart>
-                </panel>
+              <cl size="7" type="sm">
+              <h1>$100</h1>
+              <h1 class="text-warining">  -$50</h1>
+              <hr>
+              <h1>$50<h1>
               </cl>
               </row>
           </div>
@@ -141,14 +251,45 @@ app.controller('ctrl',function($scope,$firebase){
     $scope.buffer = $firebase(buffer);
     $scope.pass = "";
     $scope.loged = false;
-    $scope.loginview = true;
+    $scope.loginview = false;
     $scope.loadinview = false;
+    $scope.welcome = false;
+    $scope.welcomet = true;
     $scope.profile = false;
+    $scope.toggle = false;
+
+    setInterval(function(){
+      $scope.toggle = !$scope.toggle;
+      $scope.$apply();
+    },1000);
+
+    setTimeout(function(){
+      $scope.welcome = true;
+      $scope.$apply();
+    },1);
+
+    setTimeout(function(){
+      $scope.welcome = false;
+      $scope.$apply();
+    },2000);
+
+      setTimeout(function(){
+      $scope.welcomet = false;
+      $scope.$apply();
+    },2600);
     
     $scope.adv.$on("change",function(){
-      console.log($scope.adv);
       ref = new Firebase("https://reportemovilapi.firebaseio.com/"+$scope.adv.$value);
       $scope.usuario = $firebase(ref);
+      $scope.usuario.$on('loaded',function(){
+        if ($scope.usuario.active) {
+          $scope.loginview = true;
+        
+        }else{
+          $scope.loginview = false;
+        }
+      });
+        
     });
 
     $scope.buffer.$on("change",function(){
@@ -159,6 +300,23 @@ app.controller('ctrl',function($scope,$firebase){
       }
       if($scope.pass == $scope.usuario.pass){
         $scope.loged = true;
+        $scope.loadinview = true;
+        $scope.loginview = true;
+        getRandomColor();
+        setTimeout(function(){
+          $scope.loadinview = false;
+          $scope.loginview = false;
+          $scope.profile = true;
+          $scope.$apply();
+        }, 2000);
+      }
+
+    });
+   
+    $scope.enter = function(){
+      if($scope.pass == $scope.usuario.pass){
+        $scope.loged = true;
+        $scope.loadinview = true;
         $scope.loginview = false;
         getRandomColor();
         setTimeout(function(){
@@ -167,19 +325,7 @@ app.controller('ctrl',function($scope,$firebase){
           $scope.$apply();
         }, 2000);
       }
-
-    });
-
-    $scope.enter = function(){
-      if($scope.pass == $scope.usuario.pass){
-        $scope.loged = true;
-        $scope.loginview = false;
-        $scope.loadinview = true;
-        setTimeout(function(){
-          $scope.loadinview = false;
-          $scope.$apply();
-        }, 2000);
-      }       
+     
     }
 
 
