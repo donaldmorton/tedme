@@ -1,7 +1,9 @@
  <!DOCTYPE>
 <html ng-app="main">
+   <title>
+     BlePos
+   </title>
    <head>
-     <meta name="apple-mobile-web-app-capable" content="yes">
       <!-- SCRIPTS-->
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.js"></script>
       <script src="https://code.angularjs.org/1.2.22/angular-animate.min.js"></script>
@@ -148,8 +150,9 @@
               <br>
               <br>
               <br>
-              <center>Bienvenido.<br>
-              <img src="http://upload.wikimedia.org/wikipedia/en/a/ac/Pemex_logo.svg">
+              <center>
+                <br>
+                <img src="http://upload.wikimedia.org/wikipedia/en/thumb/a/ac/Pemex_logo.svg/1280px-Pemex_logo.svg.png" height="100ox">
               </center>
             </h1>
           </div>
@@ -167,104 +170,13 @@
               </center>
           </div>
           <div ng-repeat="ar in arry" class="sample-show-hide" ng-show="loginview && !welcomet">
-            <cl type="sm" size="8" offset="4">
-            <cl type="sm" size="6">
-                  <br>
-                  <br>
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                      <center>
-                        <img class="img-circle" src="{{usuario.imagen}}" height="200px"  width="200px">
-                      </center>
-                    </div>
-                    <div class="panel-footer">
-                      <h1><small class="pull-right"><icon name="lock"></icon></small></h1>
-                      <h1>{{usuario.nombre}}</h1>
-                    </div>
-                    <br>
-
-                  </div>
-                  <div class="form-group form-group-lg">
-                    <label class="control-label" for="focusedInput">Key</label>
-                    <input class="form-control input-lg" ng-model="pass" id="focusedInput" type="password" value="" style="font-size:42px;">
-                  </div>
-                  <button ng-show="!loged" class="btn btn-primary pull-right" ng-click="enter()">Enter <icon name="log-in"></icon></button>
-                  <button ng-show="loged" class="btn btn-success pull-right">Enter <icon name="log-in"></icon></button>
-            </cl>
-          </cl>
           </div>
           <div ng-show="loadinview">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
             <center><img src="Preloader_9.gif"></center>
           </div>
           <div ng-show="profile" class="sample-show-hide">
-              <br>
-              <br>
-              <br>
-              <row>
-              <cl size="2" type="sm" offset="1">
-                  <div class="panel panel-success">
-                    <div class="panel-heading">
-                      connected
-                    </div>
-                    <div class="panel-body">
-                      <center>
-                        <img class="img-circle" src="{{usuario.imagen}}" height="100px"  width="100px">
-                      </center>
-                    </div>
-                    <div class="panel-footer">
-                      <h5><small class="pull-right">connected</small></h5>
-                      <h4>{{usuario.nombre}}</h4>
-                    </div>
-                    <br>
-                  </div>
-              </cl>
-              <cl size="6" type="sm">
-                                  <div class="panel panel-primary">
-                    <div class="panel-heading">
-                      Objectos
-                    </div>
-                    <div class="panel-body">
-  
-                    </div>
-                    <div class="panel-footer">
-
-                    </div>
-                    <br>
-                  </div>
-                                    <div class="panel panel-default">
-                    <div class="panel-heading">
-
-                    </div>
-                    <div class="panel-body">
-
-                    </div>
-                    <div class="panel-footer">
-
-                    </div>
-                    <br>
-                  </div>
-              </cl>
-              <cl size="3" type="sm">
-              <h1>$100</h1>
-              <h1 class="text-warining">  -$50</h1>
-              <hr>
-              <h1>$50<h1>
-              </cl>
-              </row>
           </div>
+              
         </container>
    </body>
 </html>
@@ -306,40 +218,6 @@ app.controller('ctrl',function($scope,$firebase){
       $scope.$apply();
     },2600);
     
-    $scope.adv.$on("change",function(){
-      ref = new Firebase("https://reportemovilapi.firebaseio.com/"+$scope.adv.$value);
-      $scope.usuario = $firebase(ref);
-      $scope.usuario.$on('loaded',function(){
-        if ($scope.usuario.active) {
-          $scope.loginview = true;
-        
-        }else{
-          $scope.loginview = false;
-        }
-      });
-        
-    });
-
-    $scope.buffer.$on("change",function(){
-      if ($scope.pass.length>=8){
-        $scope.pass = "";
-      }else{
-        $scope.pass += $scope.buffer.$value;
-      }
-      if($scope.pass == $scope.usuario.pass){
-        $scope.loged = true;
-        $scope.loadinview = true;
-        $scope.loginview = true;
-        getRandomColor();
-        setTimeout(function(){
-          $scope.loadinview = false;
-          $scope.loginview = false;
-          $scope.profile = true;
-          $scope.$apply();
-        }, 2000);
-      }
-
-    });
    
     $scope.enter = function(){
       if($scope.pass == $scope.usuario.pass){
@@ -353,7 +231,6 @@ app.controller('ctrl',function($scope,$firebase){
           $scope.$apply();
         }, 2000);
       }
-     
     }
 
 
@@ -365,67 +242,7 @@ app.controller('ctrl',function($scope,$firebase){
         }
         $("body").css({"backgroundColor":"white"});
         return color;
-
     }
-
-      $scope.highchartsNgConfig = {
-             //This is not a highcharts object. It just looks a little like one!
-
-             options: {
-                 //This is the Main Highcharts chart config. Any Highchart options are valid here.
-                 //will be ovverriden by values specified below.
-                 chart: {
-                     type: 'spline'
-                 },
-                 tooltip: {
-                     style: {
-                         padding: 10,
-                     },
-                     shared:true
-                 },
-             },
-
-             //The below properties are watched separately for changes.
-
-             //Series object - a list of series using normal highcharts series options.
-             series: [{
-                 data: [10, 15, 12, 8, 7,9,18],
-                 borderRadius:4 
-             },{
-                type: 'spline',
-                name: 'Average',
-                data: [3, 2.67, 3, 6.33, 3.33,4,7],
-                marker: {
-                  lineWidth: 2,
-                  lineColor: Highcharts.getOptions().colors[3],
-                  fillColor: 'white'
-                }
-            }],
-             //Title configuration
-             title: {
-                 text: ''
-             },
-             //Boolean to control showng loading status on chart
-             loading: false,
-             //Configuration for the xAxis. Currently only one x axis can be dynamically controlled.
-             //properties currentMin and currentMax provied 2-way binding to the chart's maximimum and minimum
-             xAxis: {
-               title: {text: ''}
-             },             
-
-             yAxis: {
-               title: {text: ''},
-               options:{
-               }
-             },
-             //Whether to use HighStocks instead of HighCharts. Defaults to false.
-             useHighStocks: false
-             }
-
-    console.log($scope.adv);
-
-    $scope.enterv = false;
-    $scope.arry = [1];
 
 });
 
