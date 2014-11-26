@@ -154,7 +154,7 @@
 .wele.ng-hide-add.ng-hide-add-active,
 .wele.ng-hide-remove {
   opacity:0;
-  position: relative;
+  position: absolute;
   left: -30px;
 
 }
@@ -162,7 +162,7 @@
 .wele.ng-hide-add,
 .wele.ng-hide-remove.ng-hide-remove-active {
   opacity:1;
-  position: relative;
+  position: absolute;
   left: 0px;
 
 }
@@ -211,26 +211,33 @@
               Your browser does not support the HTML5 Canvas element.
               Please update your browser.
               </canvas>
-            <center><img ng-click="init();" src="https://tinypng.com/web/output/sgj4fa1i0k7f10p3.png/LOGO%20TEDME-10.png" height="500px" style="top:30%;position:absolute"></center>
+            <center><img ng-click="init();" src="https://tinypng.com/web/output/vf6en63bfe0pkgls.png/LOGO%20TEDME-10%20(2).png" height="500px" style="top:30%;position:absolute"></center>
           </div>
           <div ng-show="menu" class="welu">
-            <a ng-click="sidemenu=!sidemenu">SIDEM</a>
-            <div ng-show="sidemenu" class="wele">
+            <div ng-show="sidemenu" class="wele" style="position:absolute;left:0px;height:100%;background-color:#6D6E70">
               <ul class="list-group">
-                <a class="list-group-item">
+                <li class="list-group-item" style="background-color:#6D6E70">
+                  <center><img ng-click="init();" src="https://tinypng.com/web/output/vf6en63bfe0pkgls.png/LOGO%20TEDME-10%20(2).png" height="100px" style="opacity:.60"></center>
+                </li>
+                <a class="list-group-item" style="background-color:#6D6E70">
                   <span class="badge">2</span>
                   Dapibus ac facilisis in
                 </a>
-                <a class="list-group-item">
+                <a class="list-group-item" style="background-color:#6D6E70" >
                   <span class="badge">2</span>
                   Dapibus ac facilisis in
                 </a>
-                <a class="list-group-item">
+                <a class="list-group-item" style="background-color:#6D6E70" >
+                  <span class="badge">2</span>
+                  Dapibus ac facilisis in
+                </a>
+                <a class="list-group-item" style="background-color:#6D6E70" >
                   <span class="badge">2</span>
                   Dapibus ac facilisis in
                 </a>
               </ul>
             </div>
+            <a ng-click="sidemenu=!sidemenu">SIDEM</a>
             loading
           </div>
         </container>
