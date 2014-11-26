@@ -176,15 +176,16 @@
               <br>
               <center>
                 <br>
-                <img src="http://postimg.org/image/rkis8ojlv/" height="500px">
+                <img src="https://tinypng.com/web/output/sgj4fa1i0k7f10p3.png/LOGO%20TEDME-10.png" height="500px">
               </center>
             </h1>
           </div>
           <div ng-show="loading" class="spc">
-            <canvas id='tutorial' width='1600px' style="top:0px;left:0px;position:absolute" height='1200px' top="0px" left="0px">
+            <canvas id='tutorial' width='1600px' style="top:0px;left:0px;position:absolute;z-index:-100" height='1200px' top="0px" left="0px">
 Your browser does not support the HTML5 Canvas element.
 Please update your browser.
 </canvas>
+            <img src="https://tinypng.com/web/output/sgj4fa1i0k7f10p3.png/LOGO%20TEDME-10.png" height="500px" style="top:20%;left:28%;position:absolute">
 
           </div>
           <div ng-show="menu" class="welu">
@@ -278,7 +279,7 @@ app.controller('ctrl',function($scope,$firebase){
         var px = stars[i].x * k + halfWidth;
         var py = stars[i].y * k + halfHeight;
  
-        if( px >= 0 && px <= 1200 && py >= 0 && py <= 1600 ) {
+        if( px >= 0 && px <= 1600 && py >= 0 && py <= 1600 ) {
           var size = (1 - stars[i].z / 32.0) * 5;
           var shade = parseInt((1 - stars[i].z / 32.0) * 255);
           ctx.fillStyle = "rgb(" + shade + "," + shade + "," + shade + ")";
