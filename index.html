@@ -1,11 +1,10 @@
  <!DOCTYPE>
 <html ng-app="main">
    <title>
-     Tedme
+     BlePos
    </title>
    <head>
       <!-- SCRIPTS-->
-      <meta name="apple-mobile-web-app-capable" content="yes">
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.js"></script>
       <script src="https://code.angularjs.org/1.2.22/angular-animate.min.js"></script>
       <script src="ngFx.js"></script>
@@ -153,31 +152,20 @@
               <br>
               <center>
                 <br>
-                <img src="http://s29.postimg.org/sa1kl1k5j/10818978_10152868169750132_785404267_n.jpg" height="500px">
+                <img src="http://postimg.org/image/rkis8ojlv/" height="500px">
               </center>
             </h1>
           </div>
-          <div ng-show="!wewolcomet && !loginview && !welcome && toggle && !profile" class="welu">
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <center>
-                <img src="http://media0.giphy.com/media/Jtz5M0I1JoLug/200_s.gif" height="200px">
-              </center>
+          <div ng-show="loading" class="welu">
+            <canvas id='tutorial' width='1600px' style="top:0px;left:0px;position:absolute" height='1200px' top="0px" left="0px">
+Your browser does not support the HTML5 Canvas element.
+Please update your browser.
+</canvas>
+
           </div>
-          <div ng-repeat="ar in arry" class="sample-show-hide" ng-show="loginview && !welcomet">
+          <div ng-show="menu" class="welu">
+            loading
           </div>
-          <div ng-show="loadinview">
-            <center><img src="Preloader_9.gif"></center>
-          </div>
-          <div ng-show="profile" class="sample-show-hide">
-          </div>
-              
         </container>
    </body>
 </html>
@@ -186,53 +174,25 @@
 app = angular.module('main', ['firebase','darwin','ui.bootstrap','highcharts-ng','ngAnimate','ngFx']);
 
 app.controller('ctrl',function($scope,$firebase){
-    adv = new Firebase("https://reportemovilapi.firebaseio.com/Adv");
-    $scope.adv = $firebase(adv);
-    buffer = new Firebase("https://reportemovilapi.firebaseio.com/buffer");
-    $scope.buffer = $firebase(buffer);
-    $scope.pass = "";
-    $scope.loged = false;
-    $scope.loginview = false;
-    $scope.loadinview = false;
-    $scope.welcome = false;
-    $scope.welcomet = true;
-    $scope.profile = false;
-    $scope.toggle = false;
-
-    setInterval(function(){
-      $scope.toggle = !$scope.toggle;
-      $scope.$apply();
-    },1000);
+      $scope.welcome = false;
+      $scope.loading = false;
 
     setTimeout(function(){
       $scope.welcome = true;
       $scope.$apply();
     },1);
 
-    setTimeout(function(){
+      setTimeout(function(){
       $scope.welcome = false;
       $scope.$apply();
-    },2000);
+    },1000);
 
       setTimeout(function(){
-      $scope.welcomet = false;
+      $scope.welcome = false;
+      $scope.loading = true;
       $scope.$apply();
     },2600);
-    
-   
-    $scope.enter = function(){
-      if($scope.pass == $scope.usuario.pass){
-        $scope.loged = true;
-        $scope.loadinview = true;
-        $scope.loginview = false;
-        getRandomColor();
-        setTimeout(function(){
-          $scope.loadinview = false;
-          $scope.profile = true;
-          $scope.$apply();
-        }, 2000);
-      }
-    }
+
 
 
     function getRandomColor() {
@@ -243,6 +203,64 @@ app.controller('ctrl',function($scope,$firebase){
         }
         $("body").css({"backgroundColor":"white"});
         return color;
+    }
+
+      MAX_DEPTH = 64;
+ 
+    var canvas, ctx;
+    var stars = new Array(1220);
+ 
+    window.onload = function() {
+      canvas = document.getElementById("tutorial");
+      if( canvas && canvas.getContext ) {
+        ctx = canvas.getContext("2d");
+        initStars();
+        setInterval(loop,33);
+       }
+    }
+
+     /* Returns a random number in the range [minVal,maxVal] */
+    function randomRange(minVal,maxVal) {
+      return Math.floor(Math.random() * (maxVal - minVal - 1)) + minVal;
+    }
+ 
+    function initStars() {
+      for( var i = 0; i < stars.length; i++ ) {
+        stars[i] = {
+          x: randomRange(-25,25),
+          y: randomRange(-25,25),
+          z: randomRange(1,MAX_DEPTH)
+         }
+      }
+    }
+ 
+    function loop() {
+      var halfWidth  = canvas.width / 2;
+      var halfHeight = canvas.height / 2;
+ 
+      ctx.fillStyle = "rgb(0,0,0)";
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+ 
+      for( var i = 0; i < stars.length; i++ ) {
+        stars[i].z -= 0.2;
+ 
+        if( stars[i].z <= 0 ) {
+          stars[i].x = randomRange(-25,25);
+          stars[i].y = randomRange(-25,25);
+          stars[i].z = MAX_DEPTH;
+        }
+ 
+        var k  = 128.0 / stars[i].z;
+        var px = stars[i].x * k + halfWidth;
+        var py = stars[i].y * k + halfHeight;
+ 
+        if( px >= 0 && px <= 1200 && py >= 0 && py <= 1200 ) {
+          var size = (1 - stars[i].z / 32.0) * 5;
+          var shade = parseInt((1 - stars[i].z / 32.0) * 255);
+          ctx.fillStyle = "rgb(" + shade + "," + shade + "," + shade + ")";
+          ctx.fillRect(px,py,size,size);
+        }
+      }
     }
 
 });
