@@ -1,7 +1,7 @@
  <!DOCTYPE>
 <html ng-app="main">
    <title>
-     BlePos
+     Tedme
    </title>
    <head>
       <!-- SCRIPTS-->
@@ -197,13 +197,7 @@
         <container>
           <div ng-show="welcome" class="wel" style="top:0px;left:0px;position:absolute;z-index:-100;background-color:#F72840">
             <h1>
-              <br>
-              <br>
-              <br>
-              <br>
-              <center>
-                <br>
-              </center>
+                <center><img ng-click="init();" src="https://tinypng.com/web/output/vf6en63bfe0pkgls.png/LOGO%20TEDME-10%20(2).png" height="500px" style="top:30%;position:absolute"></center>
             </h1>
           </div>
           <div ng-show="loading" class="spc">
@@ -215,7 +209,7 @@
           </div>
           <div ng-show="menu" class="welu">
             <div ng-show="sidemenu" class="wele" style="position:absolute;left:0px;height:100%;background-color:#6D6E70">
-              <div style="position:absolute;left:250px" ng-click="sidemenu=!sidemenu">X</div>
+              <div ng-show="sidemenu" style="position:absolute;left:240px;top:20px  " ng-click="sidemenu=!sidemenu"><img src="http://tubreauxaviation.com/wp-content/uploads/2014/05/icon-menu.png" height="40px"></div>
               <ul class="list-group">
                 <li class="list-group-item" style="background-color:#6D6E70">
                   <center><img ng-click="init();" src="https://tinypng.com/web/output/vf6en63bfe0pkgls.png/LOGO%20TEDME-10%20(2).png" height="150px" style="opacity:.60"></center>
@@ -234,8 +228,8 @@
                 </a>
               </ul>
             </div>
-            <a ng-click="sidemenu=!sidemenu">SIDEM</a>
-            loading
+            <a ng-click="sidemenu=!sidemenu" ng-show="!sidemenu" style="position:absolute;left:20px;top:20px"><img src="http://tubreauxaviation.com/wp-content/uploads/2014/05/icon-menu.png" height="40px"></a>
+
           </div>
         </container>
    </body>
