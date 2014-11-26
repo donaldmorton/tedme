@@ -229,7 +229,10 @@
               </ul>
             </div>
             <a ng-click="sidemenu=!sidemenu" ng-show="!sidemenu" style="position:absolute;left:20px;top:20px"><img src="http://tubreauxaviation.com/wp-content/uploads/2014/05/icon-menu.png" height="40px"></a>
-
+            <div ng-show="menu1" style="position:absolute;left:250px;top:30px"><h1>1</h1></div>
+            <div ng-show="menu2" style="position:absolute;left:250px;top:30px"><h1>2</h1></div>
+            <div ng-show="menu3" style="position:absolute;left:250px;top:30px"><h1>3</h1></div>
+            <div ng-show="menu4" style="position:absolute;left:250px;top:30px"><h1>4</h1></div>
           </div>
         </container>
    </body>
@@ -243,6 +246,10 @@ app.controller('ctrl',function($scope,$firebase){
       $scope.loading = false;
       $scope.menu = false;
       $scope.sidemenu = false;
+      $scope.menu1 = false;
+      $scope.menu2 = false;
+      $scope.menu3 = false;
+      $scope.menu4 = false;
 
     setTimeout(function(){
       $scope.welcome = true;
@@ -264,6 +271,7 @@ app.controller('ctrl',function($scope,$firebase){
       $scope.init = function(){
       $scope.loading = false;
       $scope.menu = true;
+      $scope.menu1 = true;
       $("body").css({"backgroundColor":"white"});
       }
 
